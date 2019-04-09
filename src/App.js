@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
@@ -60,10 +60,12 @@ class App extends Component {
         <div className="container">
             <NavBar/>
 
-            <Route exact path="/" component={Home}/>
-            <Route path="/courses" component={Course}/>
-            <Route path="/about" component={About}/>
-            <Route component={NoMatch} />
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/courses" component={Course}/>
+              <Route path="/about" component={About}/>
+              <Route component={NoMatch} />
+            </Switch>
         </div>
       </Router>
     );
