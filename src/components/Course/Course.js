@@ -11,16 +11,22 @@ class Course extends Component {
     return (
       <div>
         <h1>Courses</h1>
-        <CourseList courses={this.props.courses} />
-        <AddCourse addCourse={this.props.addCourse} />
+        <button className="btn btn-primary">Add Course</button>
+        <CourseList courses={this.props.courses} authors={this.props.authors}/>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.props.getAllAuthors();
+    this.props.getAllCourses();
   }
 }
 
 function mapStateToProps(state) {
   return {
-    courses: state.courses
+    courses: state.courses,
+    authors: state.authors
   };
 }
 
