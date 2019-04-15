@@ -5,10 +5,13 @@ export default function courses(state=[], action) {
                 return state;
             return [...action.courseList];
         case 'ADD_COURSE':
-            if (action.courseName.trim() !== '') {
+            if (action.title.trim() !== '') {
                 return [
-                    ...state,
-                    action.courseName
+                    ...state, {
+                        title: action.title,
+                        authorId: action.authorId,
+                        category: action.category
+                    }
                 ];
             }
             return state;

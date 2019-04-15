@@ -1,11 +1,13 @@
 const coursesUrl = `http://localhost:3001/courses`;
 const authorsUrl = `http://localhost:3001/authors`;
 
-export function addCourse(courseName) {
+export function addCourse(title, authorId, category) {
     return {
         type: 'ADD_COURSE',
-        courseName
-    }
+        title,
+        authorId,
+        category
+    };
 }
 
 function loadAllCourse(courseList) {

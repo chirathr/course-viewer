@@ -1,25 +1,23 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import CourseList from "./CourseList";
-import AddCourse from "./AddCourse";
 import * as actionCreators from "../../actions/actionsCreators";
 
 class Course extends Component {
+
   render() {
     return (
       <div>
         <h1>Courses</h1>
-        <button className="btn btn-primary">Add Course</button>
+        <Link to="/course">
+          <button className="btn btn-primary">Add Course</button>
+        </Link>
         <CourseList courses={this.props.courses} authors={this.props.authors}/>
       </div>
     );
-  }
-
-  componentDidMount() {
-    this.props.getAllAuthors();
-    this.props.getAllCourses();
   }
 }
 
