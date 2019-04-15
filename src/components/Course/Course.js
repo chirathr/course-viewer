@@ -15,7 +15,7 @@ class Course extends Component {
         <Link to="/course">
           <button className="btn btn-primary">Add Course</button>
         </Link>
-        <CourseList courses={this.props.courses} authors={this.props.authors}/>
+        <CourseList {...this.props}/>
       </div>
     );
   }

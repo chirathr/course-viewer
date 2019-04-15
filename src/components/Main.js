@@ -24,8 +24,8 @@ class Main extends React.Component {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/course" component={AddCourse} />
           <Route path="/courses" component={Course} />
+          <Route path="/course/:slug?" component={AddCourse} />
           <Route path="/about" component={About} />
           <Route component={NoMatch} />
         </Switch>

@@ -1,4 +1,5 @@
 export default function courses(state=[], action) {
+    let index;
     switch(action.type) {
         case 'LOAD_ALL_COURSES':
             if (action.courseList === undefined)
@@ -15,6 +16,24 @@ export default function courses(state=[], action) {
                 ];
             }
             return state;
+        case 'UPDATE_COURSE':
+            index = state.findIndex(course => action.id === course.id);
+            if (index === -1)
+                return state;
+            state = state.slice();
+            state[index].title = action.title;
+            state[index].authorId = action.authorId;
+            state[index].category = action.category;
+            return state;
+        case 'DELETE_COURSE':
+            index = state.findIndex(course => action.id === course.id);
+            console.log(action, state);
+            if (index === -1)
+                return state;
+            return [
+                ...state.slice(0, index),
+                ...state.slice(index+1)
+            ];
         default:
             return state;
     }

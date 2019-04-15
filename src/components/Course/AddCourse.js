@@ -20,10 +20,29 @@ class AddCourse extends Component {
     this.handlCategoryChange = this.handlCategoryChange.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.match.params.slug && this.props.courses.length) {
+      const courseId = this.props.courses.findIndex(course => course.slug === this.props.match.params.slug);
+      const course = this.props.courses[courseId];
+      this.setState({
+        title: course.title,
+        authorId: course.authorId,
+        category: course.category
+      });
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addCourse(this.state.title, this.state.authorId, this.state.category);
-    this.setState({ value: "", toCourses: true});
+    if (this.props.match.params.slug) {
+      const courseId = this.props.courses.findIndex(course => course.slug === this.props.match.params.slug);
+      const course = this.props.courses[courseId];
+      this.props.updateCourse(course.id, this.state.title, this.state.authorId, this.state.category)
+    }
+    else {
+      this.props.addCourse(this.state.title, this.state.authorId, this.state.category);
+    }
+    this.setState({ toCourses: true});
   }
 
   handleTitleChange(e) {
@@ -48,9 +67,10 @@ class AddCourse extends Component {
     const authorList = this.props.authors.map((author) => (
       <option value={author.id} key={author.id}>{author.name}</option>
     ));
+    const heading = this.props.match.params.slug ? 'Edit Course' : 'Add Course';
     return (
       <div className="pt-3">
-        <h4>Add Course</h4>
+        <h4>{heading}</h4>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Title</label>
@@ -64,7 +84,7 @@ class AddCourse extends Component {
           </div>
           <div className="form-group">
             <label>Author</label>
-            <select className="form-control" id="author" onChange={this.handleAuthorChange} selected={this.state.authorId}>
+            <select className="form-control" id="author" onChange={this.handleAuthorChange} value={this.state.authorId}>
               <option value="-1">Select</option>
               { authorList }
             </select>

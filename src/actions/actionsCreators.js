@@ -10,6 +10,24 @@ export function addCourse(title, authorId, category) {
     };
 }
 
+export function updateCourse(id, title, authorId, category) {
+    return {
+        type: 'UPDATE_COURSE',
+        id,
+        title,
+        authorId,
+        category
+    };
+}
+
+export function deleteCourse(id) {
+    return {
+        type: 'DELETE_COURSE',
+        id
+    };
+}
+
+
 function loadAllCourse(courseList) {
     return {
         type: 'LOAD_ALL_COURSES',
