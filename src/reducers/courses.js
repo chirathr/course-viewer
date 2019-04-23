@@ -9,9 +9,11 @@ export default function courses(state=[], action) {
             if (action.title.trim() !== '') {
                 return [
                     ...state, {
+                        id: action.id,
                         title: action.title,
                         authorId: action.authorId,
-                        category: action.category
+                        category: action.category,
+                        slug: action.slug,
                     }
                 ];
             }
@@ -24,10 +26,10 @@ export default function courses(state=[], action) {
             state[index].title = action.title;
             state[index].authorId = action.authorId;
             state[index].category = action.category;
+            state[index].slug = action.slug;
             return state;
         case 'DELETE_COURSE':
             index = state.findIndex(course => action.id === course.id);
-            console.log(action, state);
             if (index === -1)
                 return state;
             return [

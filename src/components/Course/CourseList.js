@@ -20,8 +20,8 @@ class CourseList extends React.Component {
         </tr>
       );
     });
-    return (
-      <table className="table table-borderless">
+    const coursesTable = (
+      <table className="table table-borderless mt-3">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -36,6 +36,14 @@ class CourseList extends React.Component {
         </tbody>
       </table>
     );
+
+    const error = (
+      <div className="alert alert-danger mt-4" role="alert">
+        { this.props.error }
+      </div>
+    );
+
+    return this.props.error ? error : coursesTable;
   }
 };
 

@@ -24,7 +24,8 @@ class Course extends Component {
 function mapStateToProps(state) {
   return {
     courses: state.courses,
-    authors: state.authors
+    authors: state.authors,
+    error: state.error,
   };
 }
 

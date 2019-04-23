@@ -21,9 +21,8 @@ class AddCourse extends Component {
   }
 
   componentDidMount() {
-    if (this.props.match.params.slug && this.props.courses.length) {
-      const courseId = this.props.courses.findIndex(course => course.slug === this.props.match.params.slug);
-      const course = this.props.courses[courseId];
+    const course = this.props.courses.find(course => course.slug === this.props.match.params.slug);
+    if (course) {
       this.setState({
         title: course.title,
         authorId: course.authorId,
@@ -32,12 +31,25 @@ class AddCourse extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.slug && nextProps.courses.length) {
+      const course = nextProps.courses.find(course => course.slug === this.props.match.params.slug);
+      if (course) {
+        this.setState({
+          title: course.title,
+          authorId: course.authorId,
+          category: course.category
+        });
+      }
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     if (this.props.match.params.slug) {
       const courseId = this.props.courses.findIndex(course => course.slug === this.props.match.params.slug);
       const course = this.props.courses[courseId];
-      this.props.updateCourse(course.id, this.state.title, this.state.authorId, this.state.category)
+      this.props.updateCourse(course.id, this.state.title, this.state.authorId, this.state.category, course.slug)
     }
     else {
       this.props.addCourse(this.state.title, this.state.authorId, this.state.category);

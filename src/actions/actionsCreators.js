@@ -1,19 +1,53 @@
-const coursesUrl = `http://localhost:3001/courses`;
-const authorsUrl = `http://localhost:3001/authors`;
-
-export function addCourse(title, authorId, category) {
+export function addCourseToState(course) {
     return {
         type: 'ADD_COURSE',
-        title,
-        authorId,
-        category
+        ...course
     };
 }
 
-export function updateCourse(id, title, authorId, category) {
+export function updateCourseInState(course) {
     return {
         type: 'UPDATE_COURSE',
-        id,
+        ...course
+    };
+}
+
+export function deleteCourseFromState(id) {
+    return {
+        type: 'DELETE_COURSE',
+        id
+    };
+}
+
+export function addCoursesToState(courseList) {
+    return {
+        type: 'LOAD_ALL_COURSES',
+        courseList
+    };
+}
+
+export function addAuthorsToState(authorsList) {
+    return {
+        type: 'LOAD_ALL_AUTHORS',
+        authorsList
+    };
+}
+
+export function getAllCourses() {
+    return {
+        type: 'COURSES_FETCH_REQUESTED'
+    }
+}
+
+export function getAllAuthors() {
+    return {
+        type: 'AUTHORS_FETCH_REQUESTED'
+    };
+}
+
+export function addCourse(title, authorId, category) {
+    return {
+        type: 'COURSE_ADD_REQUESTED',
         title,
         authorId,
         category
@@ -22,45 +56,30 @@ export function updateCourse(id, title, authorId, category) {
 
 export function deleteCourse(id) {
     return {
-        type: 'DELETE_COURSE',
+        type: 'COURSE_DELETE_REQUESTED',
         id
     };
 }
 
-
-function loadAllCourse(courseList) {
+export function updateCourse(id, title, authorId, category, slug) {
     return {
-        type: 'LOAD_ALL_COURSES',
-        courseList
+        type: 'COURSE_UPDATE_REQUESTED',
+        id,
+        title,
+        authorId,
+        category,
+        slug
     };
 }
 
-function loadAllAuthors(authorsList) {
+export function errorFetchingData() {
     return {
-        type: 'LOAD_ALL_AUTHORS',
-        authorsList
+        type: 'ERROR_FETCHING_DATA'
     };
 }
 
-function fetchData(url) {
-    return fetch(url).then(res => res.json());
-}
-
-
-export function getAllCourses() {
-    return function(dispatch) {
-        return fetchData(coursesUrl).then(
-            (courseList) => dispatch(loadAllCourse(courseList)),
-            (error) => console.log(error)
-        );
-    };
-}
-
-export function getAllAuthors() {
-    return function(dispatch) {
-        return fetchData(authorsUrl).then(
-            (authorsList) => dispatch(loadAllAuthors(authorsList)),
-            (error) => console.log(error)
-        );
+export function clearError() {
+    return {
+        type: 'CLEAR_ERROR'
     };
 }
