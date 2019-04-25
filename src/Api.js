@@ -3,7 +3,14 @@ const authorsUrl = `http://localhost:3001/authors/`;
 
 
 function fetchData(url) {
-    return fetch(url).then(res => res.json());
+    return fetch(url).then((response) => {
+        if (!response.ok) {
+            throw response;
+        }
+        return response.json()
+    }).catch(error => {
+        throw error;
+    });
 }
 
 function postData(url, data, method="POST") {
@@ -13,42 +20,54 @@ function postData(url, data, method="POST") {
             "Content-Type": 'application/json',
         },
         body: JSON.stringify(data),
-    }).then(res => res.json());
+    }).then(response => {
+        if (!response.ok) {
+            throw response;
+        }
+        return response.json();
+    }).catch(error => {
+        throw error;
+    });
 }
 
 function getAllCourses() {
     return fetchData(coursesUrl).then(
-        courseList => courseList,
-        error => error
-    );
+        courseList => courseList
+    ).catch(error => {
+        throw error;
+    });
 }
 
 function getAllAuthors() {
     return fetchData(authorsUrl).then(
-        authorsList => authorsList,
-        error => error
-    );
+        authorsList => authorsList
+    ).catch(error => {
+        throw error;
+    });
 }
 
 function addCourse(data) {
     return postData(coursesUrl, data).then(
-        course => course,
-        error => error
-    );
+        course => course
+    ).catch(error => {
+        throw error;
+    });
 }
 
 function updateCourse(id, data) {
     return postData(coursesUrl + id, data, "PUT").then(
         course => course,
-        error => error
-    );
+    ).catch(error => {
+        throw error;
+    });
 }
 
 function deleteCourse(id) {
     return postData(coursesUrl + id, {}, "DELETE").then(
-        res => res,
-        error => error
-    );
+        res => res
+    ).catch(error => {
+        throw error;
+    })
 }
 
 
