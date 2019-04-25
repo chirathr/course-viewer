@@ -1,11 +1,12 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects';
+
 import api from '../Api';
 import {
     addAuthorsToState,
     errorFetchingData,
     clearError
 } from '../actions/index';
-
+import { AUTHORS_FETCH_REQUESTED } from '../actions/constants';
 
 function *fetchAuthors(action) {
     try {
@@ -19,7 +20,7 @@ function *fetchAuthors(action) {
 
 
 function* authorSaga() {
-    yield takeEvery("AUTHORS_FETCH_REQUESTED", fetchAuthors);
+    yield takeEvery(AUTHORS_FETCH_REQUESTED, fetchAuthors);
 }
 
 export default authorSaga;

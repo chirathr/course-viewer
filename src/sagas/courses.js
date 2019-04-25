@@ -1,4 +1,5 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects';
+
 import api from '../Api';
 import {
     addCourseToState,
@@ -8,6 +9,12 @@ import {
     errorFetchingData,
     clearError
 } from '../actions/index';
+import {
+    COURSES_FETCH_REQUESTED,
+    COURSE_ADD_REQUESTED,
+    COURSE_UPDATE_REQUESTED,
+    COURSE_DELETE_REQUESTED
+} from '../actions/constants';
 
 
 function *fetchCourses(action) {
@@ -64,10 +71,10 @@ function *deleteCourse(action) {
 }
 
 function* courseSaga() {
-    yield takeEvery("COURSES_FETCH_REQUESTED", fetchCourses);
-    yield takeEvery("COURSE_ADD_REQUESTED", addCourse);
-    yield takeEvery("COURSE_UPDATE_REQUESTED", updateCourse);
-    yield takeEvery("COURSE_DELETE_REQUESTED", deleteCourse);
+    yield takeEvery(COURSES_FETCH_REQUESTED, fetchCourses);
+    yield takeEvery(COURSE_ADD_REQUESTED, addCourse);
+    yield takeEvery(COURSE_UPDATE_REQUESTED, updateCourse);
+    yield takeEvery(COURSE_DELETE_REQUESTED, deleteCourse);
 }
 
 export default courseSaga;
