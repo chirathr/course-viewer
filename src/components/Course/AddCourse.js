@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import * as actionCreators from "../../actions/actionsCreators";
+import * as actions from "../../actions/index";
 
 class AddCourse extends Component {
   constructor(props) {
@@ -130,7 +130,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(

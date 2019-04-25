@@ -9,7 +9,7 @@ import Course from "./Course/Course";
 import About from "./About";
 import NoMatch from "./NoMatch";
 import AddCourse from "./Course/AddCourse";
-import * as actionCreators from "../actions/actionsCreators";
+import * as actions from "../actions/index";
 
 
 class Main extends React.Component {
@@ -36,11 +36,10 @@ class Main extends React.Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(
   null,
   mapDispatchToProps
 )(Main);
-

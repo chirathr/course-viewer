@@ -1,6 +1,13 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import api from '../Api';
-import { addCourseToState, updateCourseInState, deleteCourseFromState, addCoursesToState, errorFetchingData, clearError } from '../actions/actionsCreators';
+import {
+    addCourseToState,
+    updateCourseInState,
+    deleteCourseFromState,
+    addCoursesToState,
+    errorFetchingData,
+    clearError
+} from '../actions/index';
 
 
 function *fetchCourses(action) {

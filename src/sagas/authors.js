@@ -1,6 +1,10 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import api from '../Api';
-import { addAuthorsToState, errorFetchingData, clearError } from '../actions/actionsCreators';
+import {
+    addAuthorsToState,
+    errorFetchingData,
+    clearError
+} from '../actions/index';
 
 
 function *fetchAuthors(action) {

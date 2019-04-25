@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
 import CourseList from "./CourseList";
-import * as actionCreators from "../../actions/actionsCreators";
+import * as actions from "../../actions/index";
 
 class Course extends Component {
 
@@ -30,11 +30,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Course);
-

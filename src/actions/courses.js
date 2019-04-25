@@ -26,23 +26,10 @@ export function addCoursesToState(courseList) {
     };
 }
 
-export function addAuthorsToState(authorsList) {
-    return {
-        type: 'LOAD_ALL_AUTHORS',
-        authorsList
-    };
-}
-
 export function getAllCourses() {
     return {
         type: 'COURSES_FETCH_REQUESTED'
     }
-}
-
-export function getAllAuthors() {
-    return {
-        type: 'AUTHORS_FETCH_REQUESTED'
-    };
 }
 
 export function addCourse(title, authorId, category) {
@@ -69,17 +56,5 @@ export function updateCourse(id, title, authorId, category, slug) {
         authorId,
         category,
         slug
-    };
-}
-
-export function errorFetchingData() {
-    return {
-        type: 'ERROR_FETCHING_DATA'
-    };
-}
-
-export function clearError() {
-    return {
-        type: 'CLEAR_ERROR'
     };
 }
