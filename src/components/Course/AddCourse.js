@@ -31,18 +31,20 @@ class AddCourse extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.match.params.slug && nextProps.courses.length) {
-      const course = nextProps.courses.find(course => course.slug === this.props.match.params.slug);
+      const course = nextProps.courses.find(course => course.slug === nextProps.match.params.slug);
       if (course) {
-        this.setState({
+        return {
           title: course.title,
           authorId: course.authorId,
-          category: course.category
-        });
+          category: course.category,
+          toCourses: false,
+        };
       }
     }
   }
+
 
   handleSubmit(e) {
     e.preventDefault();
